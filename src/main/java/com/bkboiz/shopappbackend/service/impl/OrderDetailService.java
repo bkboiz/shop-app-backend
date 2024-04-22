@@ -5,10 +5,12 @@ import com.bkboiz.shopappbackend.repository.OrderDetailRepository;
 import com.bkboiz.shopappbackend.service.IOrderDetailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Log4j
+@Service
 @RequiredArgsConstructor
 public class OrderDetailService implements IOrderDetailService {
 
