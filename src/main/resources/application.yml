@@ -9,6 +9,11 @@ spring:
     password: Ab12345^
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+      enabled: true
 
 server:
   port: 8039
