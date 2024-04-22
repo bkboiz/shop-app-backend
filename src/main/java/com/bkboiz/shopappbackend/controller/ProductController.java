@@ -1,7 +1,7 @@
 package com.bkboiz.shopappbackend.controller;
 
 import com.bkboiz.shopappbackend.entity.Product;
-import com.bkboiz.shopappbackend.service.ProductService;
+import com.bkboiz.shopappbackend.service.IProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductService productService;
+    private final IProductService IProductService;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity createProduct(@Valid @RequestBody Product product,
@@ -46,11 +46,11 @@ public class ProductController {
             }
         }
 
-        return ResponseEntity.ok(productService.create(product));
+        return ResponseEntity.ok(IProductService.create(product));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity getProductById(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getProductById(id));
+        return ResponseEntity.ok(IProductService.getProductById(id));
     }
 }

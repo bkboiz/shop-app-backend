@@ -1,9 +1,7 @@
 package com.bkboiz.shopappbackend.controller;
 
 import com.bkboiz.shopappbackend.dto.CategoryDTO;
-import com.bkboiz.shopappbackend.entity.Product;
-import com.bkboiz.shopappbackend.service.CategoryService;
-import com.bkboiz.shopappbackend.service.ProductService;
+import com.bkboiz.shopappbackend.service.ICategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryController {
 
-    private final CategoryService categoryService;
+    private final ICategoryService ICategoryService;
 
     @PostMapping
     public ResponseEntity createCategory(@Valid @RequestBody CategoryDTO categoryDTO,
@@ -30,11 +28,11 @@ public class CategoryController {
                     .toList();
             return ResponseEntity.badRequest().body(errMsgs);
         }
-        return ResponseEntity.ok(categoryService.create(categoryDTO));
+        return ResponseEntity.ok(ICategoryService.create(categoryDTO));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity getCategoryById(@PathVariable Long id) {
-        return ResponseEntity.ok(categoryService.getCategoryById(id));
+        return ResponseEntity.ok(ICategoryService.getCategoryById(id));
     }
 }

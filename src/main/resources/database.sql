@@ -101,3 +101,10 @@ CREATE TABLE order_details(
     FOREIGN KEY (order_id) REFERENCES orders(id),
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
+
+CREATE TABLE product_images(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE ,
+    image_url VARCHAR(300)
+)
