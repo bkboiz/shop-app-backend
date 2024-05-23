@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final IUserService IUserService;
+    private final IUserService userService;
 
     @PostMapping("register")
     public ResponseEntity registerUser(@Valid @RequestBody UserDTO userDTO,
@@ -35,7 +35,7 @@ public class UserController {
 
         }
 
-        return ResponseEntity.ok(IUserService.register(userDTO));
+        return ResponseEntity.ok(userService.register(userDTO));
     }
 
     @PostMapping("login")
@@ -50,6 +50,6 @@ public class UserController {
             return ResponseEntity.badRequest().body(errMsgs);
 
         }
-        return ResponseEntity.ok(IUserService.login(userLoginDTO));
+        return ResponseEntity.ok(userService.login(userLoginDTO));
     }
 }
