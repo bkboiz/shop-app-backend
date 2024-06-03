@@ -10,4 +10,6 @@ public interface IUserService {
     UserResponse register(UserDTO userDTO);
 
     UserResponse login(UserLoginDTO userLoginDTO);
+
+    Object logout(String username);
 }

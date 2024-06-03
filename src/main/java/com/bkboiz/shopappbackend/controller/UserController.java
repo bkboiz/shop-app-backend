@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final IUserService IUserService;
+    private final IUserService userService;
 
     @PostMapping("register")
     public ResponseEntity registerUser(@Valid @RequestBody UserDTO userDTO,
@@ -35,7 +32,7 @@ public class UserController {
 
         }
 
-        return ResponseEntity.ok(IUserService.register(userDTO));
+        return ResponseEntity.ok(userService.register(userDTO));
     }
 
     @PostMapping("login")
@@ -50,6 +47,11 @@ public class UserController {
             return ResponseEntity.badRequest().body(errMsgs);
 
         }
-        return ResponseEntity.ok(IUserService.login(userLoginDTO));
+        return ResponseEntity.ok(userService.login(userLoginDTO));
+    }
+
+    @PostMapping("logout")
+    public ResponseEntity logout(@RequestParam String username) {
+        return ResponseEntity.ok(userService.logout(username));
     }
 }
